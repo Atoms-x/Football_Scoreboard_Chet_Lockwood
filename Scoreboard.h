@@ -11,6 +11,29 @@
 
 #include "Team.h"
 
+class Scoreboard
+{
+  private:
+    Team t1;
+    Team t2;
+    short int toGo;
+    short int down;
+  public:
+    Scoreboard () 
+    {
+      toGo = 0;
+      down = 0;
+    }
 
+    void drawSboard()
+    {
+     
+    }
+
+    void sboardControl()
+    {
+
+    }
+};
 
 #endif

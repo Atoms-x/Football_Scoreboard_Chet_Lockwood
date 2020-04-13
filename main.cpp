@@ -10,5 +10,9 @@
 
 int main() 
 {
+  Scoreboard s;
+  s.sboardControl();
+  s.drawSboard();
   
+  return 0;
 }
