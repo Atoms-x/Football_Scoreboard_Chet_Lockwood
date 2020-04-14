@@ -29,6 +29,10 @@ class Scoreboard
       pos = true;
     }
 
+    void setTeam1 (Team tm1)
+      {t1 = tm1;}
+    void setTeam2 (Team tm2)
+      {t1 = tm2;}
     void setToGo (short int tg)
       {toGo = tg;}
     void setDown (short int d)
@@ -38,14 +42,19 @@ class Scoreboard
     void setPos (bool p)
       {pos = p;}
 
+    Team getTeam1 () const
+      {return t1;}
+    Team getTeam2 () const
+      {return t2;}
     short int getToGo () const
       {return toGo;}
     short int getDown () const
       {return down;}
     short int getQtr () const
       {return qtr;}
+    bool getPos () const
+      {return pos;}
     
-
     void drawSboard()
     {
       cout << cClear;
@@ -107,6 +116,14 @@ class Scoreboard
     {
       drawSboard();
       
+      cout << "\n\n _______________";
+      cout << "\n|" << cUnderL << "SCOREBOARD MENU" << cReset << "|________";
+      cout << "\n|\t\t\t\t\t\t |";
+      cout << "\n|" << cYellow << " A - Scoreboard Options" << cReset << " |";
+      cout << "\n|" << cCyan <<   " B - Team 1 Options    " << cReset << " |";
+      cout << "\n|" << cRed <<    " C - Team 2 Options    " << cReset << " |";
+      cout << "\n|________________________|";
+
       t1.setName();
       cin.clear();
       t1.setHomeCity();

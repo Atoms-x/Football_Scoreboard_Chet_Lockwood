@@ -56,7 +56,6 @@ class Team
         string hc = homeCity;
         return hc;
       }
-
     bool getHomeStatus() const
       {return homeStatus;}
     short int getScore() const
