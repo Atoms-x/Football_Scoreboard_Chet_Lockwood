@@ -49,15 +49,33 @@ class Scoreboard
     void drawSboard()
     {
       cout << cClear;
+      //Line 1
       cout << cCyan << " _____________________________________________________________\n";
-      cout << "|HOME||" << setw(3) << t1.getHomeCity() << "|" << setw(14) <<  t1.getName() << "|";
-      cout << setw(8) << "00:00:00|" << right << setw(14) << t2.getName() << left << "|" << setw(3) << t2.getHomeCity();
-      cout << "||VISITOR|";
-      cout << "\n" <<  "|#|" << setw(2) << t1.getScore(); 
-      cout << "|###################################################|" << setw(2) << t2.getScore();
-      cout << "|#|\n";
-      cout <<  "|##############|" << setw(2) << t1.getScore() << "|##############################";
-    
+      //Line 2
+      cout << "|" << cGreen << "HOME" << cCyan << "||";
+      cout << cYellow << setw(3) << t1.getHomeCity() << cCyan << "|";
+      cout <<  cYellow << setw(14) << left << t1.getName() << cCyan;
+      cout << "|00:00:00|";
+      cout << cYellow << setw(14) << right << t2.getName() << cCyan << "|";
+      cout << cYellow << setw(3) << t2.getHomeCity();
+      cout << cCyan << "||" << cRed << "VISITOR" << cCyan << "|";
+      //Line 3
+      cout << "\n" << "|#|" << cYellow << setw(2) << t1.getScore(); 
+      cout << cCyan << "|###################################################|";
+      cout << cYellow << setw(2) << t2.getScore();
+      cout << cCyan << "|#|\n";
+      //Line 4
+      cout <<  "|###########|";
+      if(pos == true)
+      {
+        cout << cYellow << "<>" << cCyan << "|" << cReset << "POS" << cCyan << "|#######################|" << cReset<< "POS" << cCyan << "|  |###########|";
+      }
+      else
+      {
+        cout << "  |" << cReset << "POS" << cCyan << "|#######################|" << cReset << "POS" <<        cCyan << "|" << cYellow << "<>" << cCyan << "|###########|";
+      }
+      //Line 5
+      
     }
 
     void sboardControl()
