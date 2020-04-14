@@ -55,6 +55,7 @@ class Scoreboard
     bool getPos () const
       {return pos;}
     
+    //GUI DISPLAY ********************************************************************
     void drawSboard()
     {
       cout << cClear;
@@ -111,7 +112,8 @@ class Scoreboard
       cout << cUnderL << "\n\tWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\n";
       cout << cReset;
     }
-
+    
+    //MENU OPTIONS ********************************************************************
     void menu1()
     {
       cout << "\n\n ____";
@@ -153,18 +155,19 @@ class Scoreboard
 
     void menu4()
     {
-      cout << "\n\n ______________";
-      cout << "\n|" << cUnderL << "VISITING TEAM MENU" << cReset << "|_________";
+      cout << "\n\n __________________";
+      cout << "\n|" << cUnderL << "VISITING TEAM MENU" << cReset << "|_____";
       cout << "\n|\t\t\t\t\t\t |";
       cout << "\n|" << cRed << " A - Team Name         " << cReset << " |";
       cout << "\n|" << cRed << " B - Home City         " << cReset << " |";
       cout << "\n|" << cRed << " C - Score             " << cReset << " |";
       cout << "\n|" << cRed << " D - Timeout Count     " << cReset << " |";
       cout << "\n|" << cRed << " E - Coach Name        " << cReset << " |";
-      cout << "\n|" << cRed << " X - Exit              " << cReset << " |";
+      cout << "\n|" << cRed << " F - Exit              " << cReset << " |";
       cout << "\n|________________________|";
     }
-
+    
+    //SCOREBOARD CONTROL ***********************************************************
     void sboardControl()
     {
       drawSboard();
@@ -179,6 +182,7 @@ class Scoreboard
         cout << cReset << "\n\nMake a Choice: ";
         validateChar(decision);
 
+        //SCOREBOARD OPTIONS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         if (decision == 'a' || decision == 'A')
         {
           do
@@ -190,6 +194,7 @@ class Scoreboard
             cout << cReset << "\n\nMake a Choice: ";
             validateChar(decision);
 
+            //DOWN ------------------------------------------------------------------
             if (decision == 'a' || decision == 'A')
             {
               int d = -1;
@@ -216,7 +221,8 @@ class Scoreboard
                 }
               }while (d >= 5 || d <= 0);   
             }
-              
+
+            //TOGO ------------------------------------------------------------------  
             else if (decision == 'b' || decision == 'B')
             {
               int d = -1;
@@ -244,6 +250,7 @@ class Scoreboard
               }while (d >= 100 || d <= 0);
             }
 
+            //Possession ------------------------------------------------------------
             else if (decision == 'c' || decision == 'C')
             {
               int d = -1;
@@ -275,6 +282,7 @@ class Scoreboard
               }while (d != 1 && d != 0);
             }
 
+            //QUARTER ----------------------------------------------------------------
             else if (decision == 'd' || decision == 'D')
             {
               int d = -1;
@@ -318,28 +326,231 @@ class Scoreboard
           }while (decision != 'f' && decision != 'F');
         }
 
+        //HOME TEAM OPTIONS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         else if (decision == 'b' || decision == 'B')
         {
-          cout << cClear;
-          drawSboard();
-          
-          menu3();
+          do
+          {
+            cout << cClear;
+            drawSboard();
+            menu3();
 
-          cout << cReset << "\n\nMake a Choice: ";
-          validateChar(decision);
+            cout << cReset << "\n\nMake a Choice: ";
+            validateChar(decision);
+            
+            //TEAM NAME --------------------------------------------------------------
+            if (decision == 'a' || decision == 'A')
+            {
+                cout << cClear;
+                drawSboard();
+                menu3();
+                cout << "\n\nWhat is the team name (No more than 15 letters): ";
+                t1.setName();  
+            }
+            
+            //CITY NAME --------------------------------------------------------------
+            else if (decision == 'b' || decision == 'B')
+            {
+                cout << cClear;
+                drawSboard();
+                menu3();
+                cout << "\n\nWhat is their city name (3 letter ID): ";
+                t1.setHomeCity();
+            }
+
+            //TEAM SCORE -------------------------------------------------------------
+            else if (decision == 'c' || decision == 'C')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu3();
+                cout << "\n\nWhat is their score: ";
+                validateInt(d);
+
+                if (d >= 0 && d < 100)
+                {
+                  t1.setScore(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu3();
+                  cout << "\n\n99 points max";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d < 0 || d >= 100);
+            }
+
+            //TIMEOUT COUNT ----------------------------------------------------------
+            else if (decision == 'd' || decision == 'D')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu3();
+                cout << "\n\nHow many timeouts left: ";
+                validateInt(d);
+
+                if (d == 0)
+                {
+                  t1.setTimeoutCount(d);
+                }
+                else if (d == 1)
+                {
+                  t1.setTimeoutCount(d);
+                }
+                else if (d == 2)
+                {
+                  t1.setTimeoutCount(d);
+                }
+                else if (d == 3)
+                {
+                  t1.setTimeoutCount(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu3();
+                  cout << "\n\nThere are only three timeouts per half";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d < 0 || d >= 5);
+            }
+
+            //COACH NAME --------------------------------------------------------------
+            else if (decision == 'e' || decision == 'E')
+            {
+                cout << cClear;
+                drawSboard();
+                menu3();
+                cout << "\n\nWhat is their coach's name: ";
+                t1.setCoachName();
+            }
+          }while (decision != 'f' && decision != 'F');
         }
 
-      } while (decision != 'x' && decision != 'X');
+        //VISITORS TEAM OPTIONS ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        else if (decision == 'c' || decision == 'C')
+        {
+          do
+          {
+            cout << cClear;
+            drawSboard();
+            menu4();
 
-      t1.setName();
+            cout << cReset << "\n\nMake a Choice: ";
+            validateChar(decision);
+            
+            //TEAM NAME --------------------------------------------------------------
+            if (decision == 'a' || decision == 'A')
+            {
+                cout << cClear;
+                drawSboard();
+                menu4();
+                cout << "\n\nWhat is the team name (No more than 15 letters): ";
+                t2.setName();  
+            }
+            
+            //CITY NAME --------------------------------------------------------------
+            else if (decision == 'b' || decision == 'B')
+            {
+                cout << cClear;
+                drawSboard();
+                menu4();
+                cout << "\n\nWhat is their city name (3 letter ID): ";
+                t2.setHomeCity();
+            }
+
+            //TEAM SCORE -------------------------------------------------------------
+            else if (decision == 'c' || decision == 'C')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu4();
+                cout << "\n\nWhat is their score: ";
+                validateInt(d);
+
+                if (d >= 0 && d < 100)
+                {
+                  t2.setScore(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu4();
+                  cout << "\n\n99 points max";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d < 0 || d >= 100);
+            }
+
+            //TIMEOUT COUNT ----------------------------------------------------------
+            else if (decision == 'd' || decision == 'D')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu4();
+                cout << "\n\nHow many timeouts left: ";
+                validateInt(d);
+
+                if (d == 0)
+                {
+                  t2.setTimeoutCount(d);
+                }
+                else if (d == 1)
+                {
+                  t2.setTimeoutCount(d);
+                }
+                else if (d == 2)
+                {
+                  t2.setTimeoutCount(d);
+                }
+                else if (d == 3)
+                {
+                  t2.setTimeoutCount(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu4();
+                  cout << "\n\nThere are only three timeouts per half";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d < 0 || d >= 5);
+            }
+
+            //COACH NAME --------------------------------------------------------------
+            else if (decision == 'e' || decision == 'E')
+            {
+                cout << cClear;
+                drawSboard();
+                menu4();
+                cout << "\n\nWhat is their coach's name: ";
+                t2.setCoachName();
+            }
+          }while (decision != 'f' && decision != 'F');
+        }
+      } while (decision != 'x' && decision != 'X'); //END OF GAME
       cin.clear();
-      t1.setHomeCity();
-
-      drawSboard();
-
-      t2.setName();
-      cin.clear();
-      t2.setHomeCity();
     }
 };
 

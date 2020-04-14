@@ -25,7 +25,7 @@ class Team
     {
       homeStatus = true;
       score = 0;
-      timeoutCount = 0;
+      timeoutCount = 3;
     }
 
     void setName()
