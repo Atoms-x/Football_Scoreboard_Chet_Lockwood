@@ -16,15 +16,15 @@ class Scoreboard
   private:
     Team t1;
     Team t2;
-    short int toGo;
-    short int down;
-    short int qtr;
+    int toGo;
+    int down;
+    int qtr;
     bool pos;
   public:
     Scoreboard () 
     {
       toGo = 0;
-      down = 0;
+      down = 1;
       qtr = 1;
       pos = true;
     }
@@ -33,11 +33,11 @@ class Scoreboard
       {t1 = tm1;}
     void setTeam2 (Team tm2)
       {t1 = tm2;}
-    void setToGo (short int tg)
+    void setToGo (int tg)
       {toGo = tg;}
-    void setDown (short int d)
+    void setDown (int d)
       {down = d;}
-    void setQtr (short int q)
+    void setQtr (int q)
       {qtr = q;}
     void setPos (bool p)
       {pos = p;}
@@ -46,11 +46,11 @@ class Scoreboard
       {return t1;}
     Team getTeam2 () const
       {return t2;}
-    short int getToGo () const
+    int getToGo () const
       {return toGo;}
-    short int getDown () const
+    int getDown () const
       {return down;}
-    short int getQtr () const
+    int getQtr () const
       {return qtr;}
     bool getPos () const
       {return pos;}
@@ -86,7 +86,7 @@ class Scoreboard
       //Line 5
       cout << "\n|##########################|";
       cout << cReset << "QTR" << cPine << "|";
-      cout << cYellow << qtr << cPine << "|############################|";
+      cout << cYellow << getQtr() << cPine << "|############################|";
       //Line 6
       cout << "\n|###|" << cReset << "TOL" << cPine << "|#########|";
       cout << cReset << "DOWN" << cPine << "|##############|";
@@ -112,17 +112,224 @@ class Scoreboard
       cout << cReset;
     }
 
-    void sboardControl()
+    void menu1()
     {
-      drawSboard();
-      
+      cout << "\n\n ____";
+      cout << "\n|" << cUnderL << "MENU" << cReset << "|______________________";
+      cout << "\n|\t\t\t\t\t\t\t|";
+      cout << "\n|" << cYellow << " A - Scoreboard Options   " << cReset << " |";
+      cout << "\n|" << cCyan <<   " B - Home Team Options    " << cReset << " |";
+      cout << "\n|" << cRed <<    " C - Visiting Team Options" << cReset << " |";
+      cout << "\n|" << cPine <<   " X - End the Game         " << cReset << " |";
+      cout << "\n|___________________________|";
+    }
+
+    void menu2()
+    {
       cout << "\n\n _______________";
       cout << "\n|" << cUnderL << "SCOREBOARD MENU" << cReset << "|________";
       cout << "\n|\t\t\t\t\t\t |";
-      cout << "\n|" << cYellow << " A - Scoreboard Options" << cReset << " |";
-      cout << "\n|" << cCyan <<   " B - Team 1 Options    " << cReset << " |";
-      cout << "\n|" << cRed <<    " C - Team 2 Options    " << cReset << " |";
+      cout << "\n|" << cYellow << " A - Down              " << cReset << " |";
+      cout << "\n|" << cYellow << " B - To Go             " << cReset << " |";
+      cout << "\n|" << cYellow << " C - Possession        " << cReset << " |";
+      cout << "\n|" << cYellow << " D - Quarter           " << cReset << " |";
+      cout << "\n|" << cYellow << " F - Exit              " << cReset << " |";
       cout << "\n|________________________|";
+    }
+
+    void menu3()
+    {
+      cout << "\n\n ______________";
+      cout << "\n|" << cUnderL << "HOME TEAM MENU" << cReset << "|_________";
+      cout << "\n|\t\t\t\t\t\t |";
+      cout << "\n|" << cCyan << " A - Team Name         " << cReset << " |";
+      cout << "\n|" << cCyan << " B - Home City         " << cReset << " |";
+      cout << "\n|" << cCyan << " C - Score             " << cReset << " |";
+      cout << "\n|" << cCyan << " D - Timeout Count     " << cReset << " |";
+      cout << "\n|" << cCyan << " E - Coach Name        " << cReset << " |";
+      cout << "\n|" << cCyan << " F - Exit              " << cReset << " |";
+      cout << "\n|________________________|";
+    }
+
+    void menu4()
+    {
+      cout << "\n\n ______________";
+      cout << "\n|" << cUnderL << "VISITING TEAM MENU" << cReset << "|_________";
+      cout << "\n|\t\t\t\t\t\t |";
+      cout << "\n|" << cRed << " A - Team Name         " << cReset << " |";
+      cout << "\n|" << cRed << " B - Home City         " << cReset << " |";
+      cout << "\n|" << cRed << " C - Score             " << cReset << " |";
+      cout << "\n|" << cRed << " D - Timeout Count     " << cReset << " |";
+      cout << "\n|" << cRed << " E - Coach Name        " << cReset << " |";
+      cout << "\n|" << cRed << " X - Exit              " << cReset << " |";
+      cout << "\n|________________________|";
+    }
+
+    void sboardControl()
+    {
+      drawSboard();
+      char decision = '\0';
+      
+      do
+      {
+        cout << cClear;
+        drawSboard();
+        menu1();
+
+        cout << cReset << "\n\nMake a Choice: ";
+        validateChar(decision);
+
+        if (decision == 'a' || decision == 'A')
+        {
+          do
+          {
+            cout << cClear;
+            drawSboard();
+            menu2();
+
+            cout << cReset << "\n\nMake a Choice: ";
+            validateChar(decision);
+
+            if (decision == 'a' || decision == 'A')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu2();
+                cout << "\n\nWhat down is it: ";
+                validateInt(d);
+
+                if (d < 5 && d > 0)
+                {
+                  setDown(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu2();
+                  cout << "\n\nThere are four downs";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d >= 5 || d <= 0);   
+            }
+              
+            else if (decision == 'b' || decision == 'B')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu2();
+                cout << "\n\nHow many yards to go: ";
+                validateInt(d);
+
+                if (d < 100 && d > 0)
+                {
+                  setToGo(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu2();
+                  cout << "\n\nThere are only 99 yards to go max";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d >= 100 || d <= 0);
+            }
+
+            else if (decision == 'c' || decision == 'C')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu2();
+                cout << "\n\nWho has the ball (1 for Home | 0 for Visitors: ";
+                validateInt(d);
+
+                if (d == 1)
+                {
+                  setPos(d);
+                }
+                else if (d == 0)
+                {
+                  setPos(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu2();
+                  cout << "\n\nThere are only two teams";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d != 1 && d != 0);
+            }
+
+            else if (decision == 'd' || decision == 'D')
+            {
+              int d = -1;
+
+              do
+              {
+                cout << cClear;
+                drawSboard();
+                menu2();
+                cout << "\n\nWhat quarter is it: ";
+                validateInt(d);
+
+                if (d == 1)
+                {
+                  setQtr(d);
+                }
+                else if (d == 2)
+                {
+                  setQtr(d);
+                }
+                else if (d == 3)
+                {
+                  setQtr(d);
+                }
+                else if (d == 4)
+                {
+                  setQtr(d);
+                }
+                else 
+                {
+                  cout << cClear;
+                  drawSboard();
+                  menu2();
+                  cout << "\n\nThere are only four quarters";
+                  cin.ignore(10000, '\n');
+                }
+              }while (d <= 0 && d >= 5);
+            }
+
+
+          }while (decision != 'f' && decision != 'F');
+        }
+
+        else if (decision == 'b' || decision == 'B')
+        {
+          cout << cClear;
+          drawSboard();
+          
+          menu3();
+
+          cout << cReset << "\n\nMake a Choice: ";
+          validateChar(decision);
+        }
+
+      } while (decision != 'x' && decision != 'X');
 
       t1.setName();
       cin.clear();
