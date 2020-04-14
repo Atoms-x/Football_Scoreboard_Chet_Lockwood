@@ -50,32 +50,57 @@ class Scoreboard
     {
       cout << cClear;
       //Line 1
-      cout << cCyan << " _____________________________________________________________\n";
+      cout << cPine << " _____________________________________________________________\n";
       //Line 2
-      cout << "|" << cGreen << "HOME" << cCyan << "||";
-      cout << cYellow << setw(3) << t1.getHomeCity() << cCyan << "|";
-      cout <<  cYellow << setw(14) << left << t1.getName() << cCyan;
-      cout << "|00:00:00|";
-      cout << cYellow << setw(14) << right << t2.getName() << cCyan << "|";
+      cout << "|" << cCyan << "HOME" << cPine << "||";
+      cout << cYellow << setw(3) << t1.getHomeCity() << cPine << "|";
+      cout <<  cYellow << setw(14) << left << t1.getName() << cPine;
+      cout << "|" << cOrange << "00:00:00" << cPine << "|";
+      cout << cYellow << setw(14) << right << t2.getName() << cPine << "|";
       cout << cYellow << setw(3) << t2.getHomeCity();
-      cout << cCyan << "||" << cRed << "VISITOR" << cCyan << "|";
+      cout << cPine << "||" << cRed << "VISITOR" << cPine << "|";
       //Line 3
       cout << "\n" << "|#|" << cYellow << setw(2) << t1.getScore(); 
-      cout << cCyan << "|###################################################|";
+      cout << cPine << "|###################################################|";
       cout << cYellow << setw(2) << t2.getScore();
-      cout << cCyan << "|#|\n";
+      cout << cPine << "|#|\n";
       //Line 4
       cout <<  "|###########|";
       if(pos == true)
       {
-        cout << cYellow << "<>" << cCyan << "|" << cReset << "POS" << cCyan << "|#######################|" << cReset<< "POS" << cCyan << "|  |###########|";
+        cout << cYellow << "<>" << cPine << "|" << cReset << "POS" << cPine << "|#######################|" << cReset<< "POS" << cPine << "|  |###########|";
       }
       else
       {
-        cout << "  |" << cReset << "POS" << cCyan << "|#######################|" << cReset << "POS" <<        cCyan << "|" << cYellow << "<>" << cCyan << "|###########|";
+        cout << "  |" << cReset << "POS" << cPine << "|#######################|" << cReset << "POS" << cPine << "|" << cYellow << "<>" << cPine << "|###########|";
       }
       //Line 5
-      
+      cout << "\n|##########################|";
+      cout << cReset << "QTR" << cPine << "|";
+      cout << cYellow << qtr << cPine << "|############################|";
+      //Line 6
+      cout << "\n|###|" << cReset << "TOL" << cPine << "|#########|";
+      cout << cReset << "DOWN" << cPine << "|##############|";
+      cout << cReset << "TO GO" << cPine << "|#########|";
+      cout << cReset << "TOL" << cPine << "|###|";
+      //Line 7
+      cout << "\n|####|" << cYellow << t1.getTimeoutCount();
+      cout << cPine << "|############|" << cYellow << getDown();
+      cout << cPine << "|################|" << cYellow << setw(2) << getToGo();
+      cout << cPine << "|############|" << cYellow << t2.getTimeoutCount();
+      cout << cPine << "|####|";
+      //Line 8
+      cout << "\n|1111111111111111111111111111111111111111111111111111111111111|";
+      //Post
+      cout << cLGray << "\n\t\t\t\t\t\t [][][][][]";
+      cout << "\n\t\t\t\t\t\t   [][][]";
+      cout << "\n\t\t\t\t\t\t   [][][]";
+      cout << "\n\t\t\t\t\t\t   [][][]";
+      cout << "\n\t\t\t\t\t\t   [][][]";
+      cout << "\n\t\t\t\t\t\t   [][][]";
+      //Ground
+      cout << cUnderL << "\n\tWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW\n";
+      cout << cReset;
     }
 
     void sboardControl()
