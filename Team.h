@@ -14,9 +14,9 @@
 class Team 
 {
   private:
-    char name[50];
+    char name[15] = {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','\0'};
     char coachName[50];
-    char homeCity[50];
+    char homeCity[4] = {'X','X','X','\0'};
     bool homeStatus;
     short int score;
     short int timeoutCount;
@@ -29,11 +29,11 @@ class Team
     }
 
     void setName()
-      {cin.getline(name, 50);}
+      {cin.getline(name, 15);}
     void setCoachName()
       {cin.getline(coachName, 50);}
     void setHomeCity()
-      {cin.getline(homeCity, 50);}
+      {cin.getline(homeCity, 4);}
     void setHomeStatus(bool hs)
       {homeStatus = hs;}
     void setScore(short int s)
@@ -41,34 +41,22 @@ class Team
     void setTimeoutCount(short int toc)
       {timeoutCount = toc;}
     
+    string getName() const
+      {
+        string n = name;
+        return n;
+      }
+    string getCoachName() const
+      {
+        string cn = coachName;
+        return cn;
+      }   
+    string getHomeCity() const
+      {
+        string hc = homeCity;
+        return hc;
+      }
 
-    void getName() const
-      {
-        int count = 0;
-        while(name[count] != '\0')
-        {
-          cout << name[count];
-          count++;
-        }
-      }
-    void getCoachName() const
-      {
-        int count = 0;
-        while(coachName[count] != '\0')
-        {
-          cout << coachName[count];
-          count++;
-        }
-      }
-    void getHomeCity() const
-      {
-        int count = 0;
-        while(homeCity[count] != '\0')
-        {
-          cout << homeCity[count];
-          count++;
-        }
-      }
     bool getHomeStatus() const
       {return homeStatus;}
     short int getScore() const
