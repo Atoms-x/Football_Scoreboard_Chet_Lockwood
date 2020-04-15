@@ -14,9 +14,9 @@
 class Team 
 {
   private:
-    char name[15] = {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','\0'};
-    char coachName[50];
-    char homeCity[4] = {'X','X','X','\0'};
+    char name[100] = {'X','X','X','X','X','X','X','X','X','X','X','X','X','X','\0'};
+    char coachName[100];
+    char homeCity[100] = {'X','X','X','\0'};
     bool homeStatus;
     short int score;
     short int timeoutCount;
@@ -29,11 +29,21 @@ class Team
     }
 
     void setName()
-      {cin.getline(name, 15);}
+      {
+        char n[100];
+        cin.getline(n, 100);
+        for (int i = 0; i < 14; i++) 
+            name[i] = n[i];
+      }
     void setCoachName()
-      {cin.getline(coachName, 50);}
+      {cin.getline(coachName, 100);}
     void setHomeCity()
-      {cin.getline(homeCity, 4);}
+      {
+        char n[100];
+        cin.getline(n, 100);
+        for (int i = 0; i < 3; i++)
+          homeCity[i] = n[i];
+      }
     void setHomeStatus(bool hs)
       {homeStatus = hs;}
     void setScore(short int s)

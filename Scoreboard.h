@@ -553,5 +553,4 @@ class Scoreboard
       cin.clear();
     }
 };
-
 #endif
