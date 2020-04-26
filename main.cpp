@@ -3,6 +3,7 @@
   13 APRIL 2020
   IDE: Repl.it 
   Program:  Football Scoreboard
+  Learning Point: How to implement classes and multiple files
   https://repl.it/@ChetLockwood/FootballScoreboardChetLockwood
 */
 
